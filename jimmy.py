@@ -6,7 +6,6 @@ class Button(Enum):
 class Output(Enum):
     DOOR_CLOSED_H = 1
 
-#This is a comment
 class TestBoxPrinter:
     
     def activate(self, button):
