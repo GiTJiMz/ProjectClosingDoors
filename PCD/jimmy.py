@@ -12,6 +12,7 @@ class TestBoxPrinter:
         print(f"Activate button {button}.")
         
     def pulse(self, button, time):
+
         pass
     
     def is_active(self, output):
@@ -27,15 +28,17 @@ class TestBoxPrinter:
           ]
         print(active)
     
-    
 def action_1(tb):
     tb.activate(Button.POWER)
     tb.is_active(Output.DOOR_CLOSED_H)
+    tb.wait_for_input()
     
-    
-    
+def action_2(tb):
+    """
+    docstring
+    """
+      
 tb = TestBoxPrinter()
 
 action_1(tb)
 tb.wait_for_input()
-    
