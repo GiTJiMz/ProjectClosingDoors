@@ -19,12 +19,24 @@ class TestBoxPrinter:
                 print(f"Activate contact IN {contact.value} ({contact.name}).")
 
     def deactivate(self, contact):
-        print(f"\nDeactivate contact IN {contact.value} ({contact.name}).\n")
+        if self.activation is False:
+            if contact.value == 0:
+                print(f"\nDeactivate {contact.name} contact.")
+            else:
+                print(f"\nDeactivate contact IN", end=' ')
+                print(f"{contact.value} ({contact.name}).")
+            self.activation = True
+        else:
+            if contact.value == 0:
+                print(f"Deactivate {contact.name} contact.")
+            else:
+                print(f"Deactivate contact IN", end=' ')
+                print(f"{contact.value} ({contact.name}).")
 
-    def pulse(self, contact, time):
+    def pulse(self, contact, time=0):
         print(f"\nActivate contact IN {contact.value}", end=' ')
         print(f"({contact.name})", end=' ')
-        print(f"and turn it off after {time} second.\n")
+        print(f"and turn it off after {time} seconds.\n")
 
     # ask user to check on output
 
@@ -40,9 +52,17 @@ class TestBoxPrinter:
             print(f"active for {time} seconds ?")
 
     def is_inactive(self, output):
+        if self.activation is True:
+            print("")
+            self.activation = False
+
         print(f"Is OUT {output.value} ({output.name}) inactive ?")
 
     def is_pulsing(self, output, frequency):
+        if self.activation is True:
+            print("")
+            self.activation = False
+
         print(f"Is OUT {output.value} ({output.name})", end=' ')
         print(f"pulsing with {frequency} Hz ?")
 
@@ -52,6 +72,13 @@ class TestBoxPrinter:
             self.activation = False
 
         print(f"Is every output unaltered ?")
+
+    def nothing_else_changes(self):
+        if self.activation is True:
+            print("")
+            self.activation = False
+
+        print(f"Is every other output unaltered ?")
 
     # get answers from user
 
@@ -65,11 +92,14 @@ class TestBoxPrinter:
 
 
 if __name__ == "__main__":
-    from PCD.actions import action_1, action_11
+    # from PCD.actions import action_1, action_11
+    from PCD import actions
     tb = TestBoxPrinter()
-    action_1(tb)
-    #  action_2(tb)
-    action_11(tb)
-    #  action_5(tb)
+    actions.action_1(tb)
+    actions.action_2(tb)
+    actions.action_11(tb)
+    actions.action_5(tb)
+    actions.action_29(tb)
+    actions.action_33(tb)
 
     # tb.wait_for_input()
