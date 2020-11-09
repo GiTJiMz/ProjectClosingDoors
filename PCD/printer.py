@@ -83,12 +83,16 @@ class TestBoxPrinter:
     # get answers from user
 
     def wait_for_input(self):
-
         active = [int(x)
                   for x in
                   input("List answers for the questions: ").split(",")
                   ]
         print(active)
+
+    def treat_input(self, answer):
+        print("Treating input from user")
+        return True
+
 
 
 if __name__ == "__main__":
