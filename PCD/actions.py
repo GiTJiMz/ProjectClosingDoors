@@ -1,8 +1,19 @@
 from PCD.domain import Input, Output
+from collections import OrderedDict
+
+dict_actions = OrderedDict()
+
+# Define the decorator
+
+
+def action(fn):
+    dict_actions[fn.__name__] = fn
+    return fn
+
 
 # Power-on test
 
-
+@action
 def action_1(tb):
     tb.activate(Input(0))  # Input(0) = Input.POWER
     tb.is_active(Output(1))
@@ -13,8 +24,9 @@ def action_1(tb):
     # tb.wait_for_input()
 
 
-# Test of right doorside
+# Test of right door side
 
+@action
 def action_2(tb):
     tb.activate(Input(2))  # Input(2) = Input.IN_2
     tb.is_active(Output(3))
@@ -24,6 +36,7 @@ def action_2(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_3(tb):
     tb.pulse(Input(7))
     tb.is_active(Output(14))
@@ -34,6 +47,7 @@ def action_3(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_4(tb):
     tb.deactivate(Input(8))
     tb.deactivate(Input(10))
@@ -42,6 +56,7 @@ def action_4(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_5(tb):
     tb.pulse(Input(12), 0.5)
     tb.is_active(Output(13))
@@ -50,6 +65,7 @@ def action_5(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_6(tb):
     tb.pulse(Input(6))
     tb.is_active(Output(12))
@@ -60,6 +76,7 @@ def action_6(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_7(tb):
     tb.activate(Input(8))
     tb.activate(Input(10))
@@ -67,6 +84,7 @@ def action_7(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_8(tb):
     tb.pulse(Input(7))
     tb.is_active(Output(14))
@@ -77,6 +95,7 @@ def action_8(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_9(tb):
     tb.deactivate(Input(8))
     tb.deactivate(Input(10))
@@ -84,6 +103,7 @@ def action_9(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_10(tb):
     tb.pulse(Input(6))
     tb.is_active(Output(12))
@@ -94,6 +114,7 @@ def action_10(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_11(tb):
     tb.activate(Input(8))
     tb.activate(Input(10))
@@ -101,6 +122,7 @@ def action_11(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_12(tb):
     tb.deactivate(Input(2))
     tb.is_active(Output(1))
@@ -111,6 +133,7 @@ def action_12(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_13(tb):
     tb.activate(Input(2))
     tb.is_active(Output(3))
@@ -120,6 +143,7 @@ def action_13(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_14(tb):
     tb.pulse(Input(7))
     tb.is_active(Output(14))
@@ -130,6 +154,7 @@ def action_14(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_15(tb):
     tb.deactivate(Input(8))
     tb.deactivate(Input(10))
@@ -138,6 +163,7 @@ def action_15(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_16(tb):
     tb.pulse(Input(12), 0.5)
     tb.is_active(Output(13))
@@ -146,6 +172,7 @@ def action_16(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_17(tb):
     tb.deactivate(Input(2))
     tb.is_pulsing(Output(13), 3)
@@ -153,6 +180,7 @@ def action_17(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_18(tb):
     tb.pulse(Input(6))
     tb.is_active(Output(20))
@@ -164,6 +192,7 @@ def action_18(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_19(tb):
     tb.activate(Input(8))
     tb.is_pulsing(Output(1), 1)
@@ -171,6 +200,7 @@ def action_19(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_20(tb):
     tb.activate(Input(10))
     tb.is_active(Output(1))
@@ -178,6 +208,7 @@ def action_20(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_21(tb):
     tb.activate(Input(2))
     tb.is_active(Output(3))
@@ -187,6 +218,7 @@ def action_21(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_22(tb):
     tb.pulse(Input(7))
     tb.is_active(Output(14))
@@ -197,6 +229,7 @@ def action_22(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_23(tb):
     tb.deactivate(Input(8))
     tb.deactivate(Input(10))
@@ -205,6 +238,7 @@ def action_23(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_24(tb):
     tb.pulse(Input(12), 0.5)
     tb.is_active(Output(13))
@@ -213,6 +247,7 @@ def action_24(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_25(tb):
     tb.pulse(Input(13), 0.5)
     tb.is_active(Output(9))
@@ -220,6 +255,7 @@ def action_25(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_26(tb):
     tb.pulse(Input(15))
     tb.is_active(Output(10))
@@ -230,6 +266,7 @@ def action_26(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_27(tb):
     tb.deactivate(Input(9))
     tb.deactivate(Input(11))
@@ -238,6 +275,7 @@ def action_27(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_28(tb):
     tb.pulse(Input(14))
     tb.is_active(Output(19))
@@ -247,6 +285,7 @@ def action_28(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_29(tb):
     tb.activate(Input(9))
     tb.is_pulsing(Output(2), 1)
@@ -254,6 +293,7 @@ def action_29(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_30(tb):
     tb.activate(Input(11))
     tb.is_active(Output(2))
@@ -261,6 +301,7 @@ def action_30(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_31(tb):
     tb.pulse(Input(13), 0.5)
     tb.is_active(Output(9))
@@ -268,6 +309,7 @@ def action_31(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_32(tb):
     tb.pulse(Input(15))
     tb.is_active(Output(10))
@@ -278,6 +320,7 @@ def action_32(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_33(tb):
     tb.deactivate(Input(9))
     tb.deactivate(Input(11))
@@ -286,6 +329,7 @@ def action_33(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_34(tb):
     tb.deactivate(Input(2))
     tb.is_active(Output(19))
@@ -296,6 +340,7 @@ def action_34(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_35(tb):
     tb.activate(Input(9))
     tb.activate(Input(11))
@@ -304,6 +349,7 @@ def action_35(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_36(tb):
     tb.pulse(Input(12), 0.5)
     tb.is_active(Output(20))
@@ -315,6 +361,7 @@ def action_36(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_37(tb):
     tb.activate(Input(8))
     tb.activate(Input(10))
@@ -322,9 +369,10 @@ def action_37(tb):
     tb.nothing_else_changes()
     # tb.wait_for_input()
 
-# Test of left doorside
+# Test of left door side
 
 
+@action
 def action_38(tb):
     tb.activate(Input(3))
     tb.is_active(Output(3))
@@ -334,6 +382,7 @@ def action_38(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_39(tb):
     tb.pulse(Input(15))
     tb.is_active(Output(10))
@@ -344,6 +393,7 @@ def action_39(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_40(tb):
     tb.deactivate(Input(9))
     tb.deactivate(Input(11))
@@ -352,6 +402,7 @@ def action_40(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_41(tb):
     tb.pulse(Input(13), 0.5)
     tb.is_active(Output(11))
@@ -360,6 +411,7 @@ def action_41(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_42(tb):
     tb.pulse(Input(14))
     tb.is_active(Output(9))
@@ -370,6 +422,7 @@ def action_42(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_43(tb):
     tb.activate(Input(9))
     tb.activate(Input(11))
@@ -377,6 +430,7 @@ def action_43(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_44(tb):
     tb.pulse(Input(15))
     tb.is_active(Output(10))
@@ -387,6 +441,7 @@ def action_44(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_45(tb):
     tb.deactivate(Input(9))
     tb.deactivate(Input(11))
@@ -394,6 +449,7 @@ def action_45(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_46(tb):
     tb.pulse(Input(14))
     tb.is_active(Output(9))
@@ -404,6 +460,7 @@ def action_46(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_47(tb):
     tb.activate(Input(9))
     tb.activate(Input(11))
@@ -411,6 +468,7 @@ def action_47(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_48(tb):
     tb.deactivate(Input(3))
     tb.is_active(Output(2))
@@ -421,6 +479,7 @@ def action_48(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_49(tb):
     tb.activate(Input(3))
     tb.is_active(Output(3))
@@ -430,6 +489,7 @@ def action_49(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_50(tb):
     tb.pulse(Input(15))
     tb.is_active(Output(10))
@@ -440,6 +500,7 @@ def action_50(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_51(tb):
     tb.deactivate(Input(9))
     tb.deactivate(Input(11))
@@ -448,6 +509,7 @@ def action_51(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_52(tb):
     tb.pulse(Input(13), 0.5)
     tb.is_active(Output(11))
@@ -456,6 +518,7 @@ def action_52(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_53(tb):
     tb.deactivate(Input(3))
     tb.is_pulsing(Output(11), 3)
@@ -463,6 +526,7 @@ def action_53(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_54(tb):
     tb.pulse(Input(14))
     tb.is_active(Output(19))
@@ -474,6 +538,7 @@ def action_54(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_55(tb):
     tb.activate(Input(9))
     tb.is_pulsing(Output(2), 1)
@@ -481,6 +546,7 @@ def action_55(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_56(tb):
     tb.activate(Input(11))
     tb.is_active(Output(2))
@@ -488,6 +554,7 @@ def action_56(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_57(tb):
     tb.activate(Input(3))
     tb.is_active(Output(3))
@@ -497,6 +564,7 @@ def action_57(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_58(tb):
     tb.pulse(Input(15))
     tb.is_active(Output(10))
@@ -507,6 +575,7 @@ def action_58(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_59(tb):
     tb.deactivate(Input(9))
     tb.deactivate(Input(11))
@@ -515,6 +584,7 @@ def action_59(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_60(tb):
     tb.pulse(Input(13), 0.5)
     tb.is_active(Output(11))
@@ -523,6 +593,7 @@ def action_60(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_61(tb):
     tb.pulse(Input(12), 0.5)
     tb.is_active(Output(12))
@@ -530,6 +601,7 @@ def action_61(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_62(tb):
     tb.pulse(Input(7))
     tb.is_active(Output(14))
@@ -540,6 +612,7 @@ def action_62(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_63(tb):
     tb.deactivate(Input(8))
     tb.deactivate(Input(10))
@@ -548,6 +621,7 @@ def action_63(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_64(tb):
     tb.pulse(Input(6))
     tb.is_active(Output(20))
@@ -557,6 +631,7 @@ def action_64(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_65(tb):
     tb.activate(Input(8))
     tb.is_pulsing(Output(1), 1)
@@ -564,6 +639,7 @@ def action_65(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_66(tb):
     tb.activate(Input(10))
     tb.is_active(Output(1))
@@ -571,6 +647,7 @@ def action_66(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_67(tb):
     tb.pulse(Input(12), 0.5)
     tb.is_active(Output(12))
@@ -578,6 +655,7 @@ def action_67(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_68(tb):
     tb.pulse(Input(7))
     tb.is_active(Output(14))
@@ -588,6 +666,7 @@ def action_68(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_69(tb):
     tb.deactivate(Input(8))
     tb.deactivate(Input(10))
@@ -596,6 +675,7 @@ def action_69(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_70(tb):
     tb.deactivate(Input(3))
     tb.is_active(Output(20))
@@ -606,6 +686,7 @@ def action_70(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_71(tb):
     tb.activate(Input(8))
     tb.activate(Input(10))
@@ -614,6 +695,7 @@ def action_71(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_72(tb):
     tb.pulse(Input(13), 0.5)
     tb.is_active(Output(19))
@@ -625,6 +707,7 @@ def action_72(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_73(tb):
     tb.activate(Input(9))
     tb.activate(Input(11))
@@ -633,6 +716,7 @@ def action_73(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_74(tb):
     tb.activate(Input(2))
     tb.is_active(Output(3))
@@ -642,6 +726,7 @@ def action_74(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_75(tb):
     tb.activate(Input(3))
     tb.is_active(Output(9))
@@ -650,6 +735,7 @@ def action_75(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_76(tb):
     tb.pulse(Input(7))
     tb.is_active(Output(14))
@@ -660,6 +746,7 @@ def action_76(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_77(tb):
     tb.deactivate(Input(8))
     tb.deactivate(Input(10))
@@ -668,6 +755,7 @@ def action_77(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_78(tb):
     tb.pulse(Input(15))
     tb.is_active(Output(10))
@@ -678,6 +766,7 @@ def action_78(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_79(tb):
     tb.deactivate(Input(9))
     tb.deactivate(Input(11))
@@ -686,6 +775,7 @@ def action_79(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_80(tb):
     tb.pulse(Input(12), 0.5)
     tb.is_active(Output(13))
@@ -694,6 +784,7 @@ def action_80(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_81(tb):
     tb.pulse(Input(13), 0.5)
     tb.is_active(Output(11))
@@ -701,6 +792,7 @@ def action_81(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_82(tb):
     tb.deactivate(Input(2))
     tb.deactivate(Input(3))
@@ -710,6 +802,7 @@ def action_82(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_83(tb):
     tb.activate(Input(4))
     tb.is_active(Output(172))
@@ -727,6 +820,7 @@ def action_83(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_84(tb):
     tb.activate(Input(8))
     tb.activate(Input(10))
@@ -735,6 +829,7 @@ def action_84(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_85(tb):
     tb.activate(Input(9))
     tb.activate(Input(11))
@@ -743,6 +838,7 @@ def action_85(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_86(tb):
     tb.activate(Input(16))
     tb.is_inactive(Output(172))
@@ -755,6 +851,7 @@ def action_86(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_87(tb):
     tb.deactivate(Input(8))
     tb.is_inactive(Output(1))
@@ -762,6 +859,7 @@ def action_87(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_88(tb):
     tb.deactivate(Input(9))
     tb.is_inactive(Output(2))
@@ -769,6 +867,7 @@ def action_88(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_89(tb):
     tb.activate(Input(8))
     tb.activate(Input(9))
@@ -778,6 +877,7 @@ def action_89(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_90(tb):
     tb.deactivate(Input(16))
     tb.is_active(Output(1))
@@ -790,6 +890,7 @@ def action_90(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_91(tb):
     tb.deactivate(Input(4))
     tb.is_inactive(Output(172))
@@ -798,6 +899,7 @@ def action_91(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_92(tb):
     tb.activate(Input(2))
     tb.is_active(Output(3))
@@ -807,6 +909,7 @@ def action_92(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_93(tb):
     tb.activate(Input(7))
     tb.is_active(Output(14))
@@ -817,6 +920,7 @@ def action_93(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_94(tb):
     tb.deactivate(Input(8))
     tb.deactivate(Input(10))
@@ -825,6 +929,7 @@ def action_94(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_95(tb):
     tb.pulse(Input(12), 0.5)
     tb.is_active(Output(13))
@@ -833,6 +938,7 @@ def action_95(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_96(tb):
     tb.activate(Input(1))
     tb.is_pulsing(Output(7), 5)
@@ -843,6 +949,7 @@ def action_96(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_97(tb):
     tb.pulse(Input(12), 0.5)
     tb.is_active(Output(3))
@@ -852,6 +959,7 @@ def action_97(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_98(tb):
     tb.pulse(Input(6))
     tb.is_active(Output(12))
@@ -862,6 +970,7 @@ def action_98(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_99(tb):
     tb.activate(Input(8))
     tb.activate(Input(10))
@@ -870,6 +979,7 @@ def action_99(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_100(tb):
     tb.deactivate(Input(1))
     tb.is_inactive(Output(7))
@@ -880,6 +990,7 @@ def action_100(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_101(tb):
     tb.deactivate(Input(2))
     tb.is_inactive(Output(3))
@@ -888,6 +999,7 @@ def action_101(tb):
     #  tb.wait_for_input()
 
 
+@action
 def action_102(tb):
     tb.activate(Input(3))
     tb.is_active(Output(3))
@@ -897,6 +1009,7 @@ def action_102(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_103(tb):
     tb.pulse(Input(15))
     tb.is_active(Output(10))
@@ -907,6 +1020,7 @@ def action_103(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_104(tb):
     tb.deactivate(Input(9))
     tb.deactivate(Input(11))
@@ -915,6 +1029,7 @@ def action_104(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_105(tb):
     tb.pulse(Input(13), 0.5)
     tb.is_active(Output(11))
@@ -923,6 +1038,7 @@ def action_105(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_106(tb):
     tb.activate(Input(1))
     tb.is_pulsing(Output(7), 5)
@@ -933,6 +1049,7 @@ def action_106(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_107(tb):
     tb.pulse(Input(13), 0.5)
     tb.is_active(Output(3))
@@ -942,6 +1059,7 @@ def action_107(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_108(tb):
     tb.pulse(Input(14))
     tb.is_active(Output(9))
@@ -952,6 +1070,7 @@ def action_108(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_109(tb):
     tb.activate(Input(9))
     tb.activate(Input(11))
@@ -960,6 +1079,7 @@ def action_109(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_110(tb):
     tb.deactivate(Input(1))
     tb.is_inactive(Output(7))
@@ -970,6 +1090,7 @@ def action_110(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_111(tb):
     tb.deactivate(Input(3))
     tb.is_inactive(Output(3))
@@ -978,6 +1099,7 @@ def action_111(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_112(tb):
     tb.activate(Input(5))
     tb.is_pulsing(Output(7), 1)
@@ -988,6 +1110,7 @@ def action_112(tb):
     # tb.wait_for_input()
 
 
+@action
 def action_113(tb):
     tb.deactivate(Input(5))
     tb.is_inactive(Output(7))
@@ -996,3 +1119,7 @@ def action_113(tb):
     tb.is_inactive(Output(181))
     tb.nothing_else_changes()
     # tb.wait_for_input()
+
+
+# print(actions)
+print(list(dict_actions))
