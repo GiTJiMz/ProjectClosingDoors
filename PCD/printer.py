@@ -33,6 +33,9 @@ class TestBoxPrinter:
                 print(f"Deactivate contact IN", end=' ')
                 print(f"{contact.value} ({contact.name}).")
 
+    def deactivate_all_other_input(self):
+        print(f"\nDeactivate all other input")
+
     def pulse(self, contact, time=0):
         print(f"\nActivate contact IN {contact.value}", end=' ')
         print(f"({contact.name})", end=' ')
@@ -80,6 +83,13 @@ class TestBoxPrinter:
 
         print(f"Is every other output unaltered ?")
 
+    def everything_else_deactivated(self):
+        if self.activation is True:
+            print("")
+            self.activation = False
+
+        print(f"Is every other output deactivated ?")
+
     # get answers from user
 
     def wait_for_input(self):
@@ -88,15 +98,33 @@ class TestBoxPrinter:
                   input("List answers for the questions: ").split(",")
                   ]
         print(active)
+        return active
 
     def treat_input(self, answer):
         print("Treating input from user")
         return True
 
 
+# class AdvancedTestBoxPrinter:
+#
+#     def __init__(self):
+#         self.active = []
+#
+#     def is_active(self, output, time=None):
+#         self.active.append(output)
+#
+#     def wait_for_input(self):
+#         for active in self.active:
+#             print(f"Is output {active} active")
+#
+#     def treat_input(self, answer):
+#         pass
+#         # lookup answer in active
+#         # for a in answer:
+#         #     self.active[a.index]
+
 
 if __name__ == "__main__":
-    # from PCD.actions import action_1, action_11
     from PCD import actions
     tb = TestBoxPrinter()
     actions.action_1(tb)
