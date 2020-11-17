@@ -1,5 +1,4 @@
 import cmd
-import readline
 
 from PCD.actions import Sequence
 from PCD.printer import TestBoxPrinter
@@ -14,10 +13,25 @@ Formålet er teste dørstyring i IC3
         super().__init__()
         self.tb = tb
 
+    def _run_sequence(self, seq):
+        print("Running:", seq)
+        for action in seq.actions:
+            print("Running:", action.__name__)
+            action(self.tb)
+            answer = self.tb.wait_for_input()
+            if not self.tb.treat_input(answer):
+                print("Not a valid input")
+                break
+
     def do_run(self, args):
         """Kør en fuld test, en sekevens, eller en aktion.
+
+        pcd> run all - runs all
+        pcd> run 1   - runs sequence 1
         """
         if args == "all":
+            for k,v in sorted(Sequence.instances.items()):
+                self._run_sequence(v)
             return
 
         try:
@@ -26,11 +40,8 @@ Formålet er teste dørstyring i IC3
             print(f"Invalid syntax")
         else:
             seq = Sequence.instances[seqid]
-            for action in seq.actions:
-                action(self.tb)
-                answer = self.tb.wait_for_input()
-                if not self.tb.treat_input(answer):
-                    break
+            self._run_sequence(seq)
+
 
 
 
