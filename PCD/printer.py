@@ -1,6 +1,9 @@
 class TestBoxPrinter:
 
-    activation = False  # Indicates wheather activation has occurred
+    def __init__(self):
+        self.questions = 0
+        # Indicates wheather activation has occurred
+        self.activation = False
 
     # ask user to do actions on input
 
@@ -44,6 +47,7 @@ class TestBoxPrinter:
     # ask user to check on output
 
     def is_active(self, output, time=None):
+        self.questions += 1
         if self.activation is True:
             print("")
             self.activation = False
@@ -55,6 +59,7 @@ class TestBoxPrinter:
             print(f"active for {time} seconds ?")
 
     def is_inactive(self, output):
+        self.questions += 1
         if self.activation is True:
             print("")
             self.activation = False
@@ -62,6 +67,7 @@ class TestBoxPrinter:
         print(f"Is OUT {output.value} ({output.name}) inactive ?")
 
     def is_pulsing(self, output, frequency):
+        self.questions += 1
         if self.activation is True:
             print("")
             self.activation = False
@@ -70,6 +76,7 @@ class TestBoxPrinter:
         print(f"pulsing with {frequency} Hz ?")
 
     def nothing_changes(self):
+        self.questions += 1
         if self.activation is True:
             print("")
             self.activation = False
@@ -77,6 +84,7 @@ class TestBoxPrinter:
         print(f"Is every output unaltered ?")
 
     def nothing_else_changes(self):
+        self.questions += 1
         if self.activation is True:
             print("")
             self.activation = False
@@ -84,6 +92,7 @@ class TestBoxPrinter:
         print(f"Is every other output unaltered ?")
 
     def everything_else_deactivated(self):
+        self.questions += 1
         if self.activation is True:
             print("")
             self.activation = False
@@ -101,8 +110,8 @@ class TestBoxPrinter:
         return active
 
     def treat_input(self, answer):
-        print("Treating input from user")
-        return True
+        noquestion, self.questions = self.questions, 0
+        return len(answer) == noquestion and all(answer)
 
 
 # class AdvancedTestBoxPrinter:
