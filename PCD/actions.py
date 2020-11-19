@@ -1,5 +1,5 @@
 from PCD.domain import Input, Output
-from collections import OrderedDict, defaultdict
+
 
 class Sequence:
     instances = {}
@@ -22,6 +22,7 @@ class Sequence:
     def __str__(self):
         return f"Sequence {self.id}: {self.description} " \
                + f"[{len(self.actions)}]"
+
 
 # def action_decorator(fn):
 #     dict_actions[fn.__name__] = fn
@@ -62,6 +63,7 @@ class Sequence:
 
 seq1 = Sequence(1, "Opens the doors in the...")
 
+
 @seq1.declare_action
 def action_2(tb):
     tb.activate(Input(2))  # Input(2) = Input.IN_2
@@ -93,6 +95,7 @@ def action_4(tb):
     tb.nothing_else_changes()
     # answer = tb.wait_for_input()
     # return tb.treat_input(answer)
+
 
 #
 # @action_decorator

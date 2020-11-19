@@ -3,13 +3,18 @@ import cmd
 from PCD.actions import Sequence
 from PCD.printer import TestBoxPrinter
 
+
 class PCDHandler(cmd.Cmd):
-    intro = """Velkommen til Project Closing Doors.
-Formålet er teste dørstyring i IC3
-    """
+
+    intro = """
+ Welcome to Project Closing Doors.
+ The purpose of this program is to test
+ the Door Control Unit, installed in IC3 trains
+ """
+
     prompt = "pcd> "
 
-    def __init__(self, tb : TestBoxPrinter):
+    def __init__(self, tb: TestBoxPrinter):
         super().__init__()
         self.tb = tb
 
@@ -24,13 +29,13 @@ Formålet er teste dørstyring i IC3
                 break
 
     def do_run(self, args):
-        """Kør en fuld test, en sekevens, eller en aktion.
+        """Run a full test, test of a specific door-function or an action.
 
-        pcd> run all - runs all
-        pcd> run 1   - runs sequence 1
+        pcd> run all - runs all actions
+        pcd> run 1 - runs specific door-function 1
         """
         if args == "all":
-            for k,v in sorted(Sequence.instances.items()):
+            for k, v in sorted(Sequence.instances.items()):
                 self._run_sequence(v)
             return
 
@@ -42,17 +47,18 @@ Formålet er teste dørstyring i IC3
             seq = Sequence.instances[seqid]
             self._run_sequence(seq)
 
-
-
-
     def do_list(self, args):
         """ List all sequences """
         for id, seq in Sequence.instances.items():
             print("-", seq)
 
+    def do_EOF(self, line):
+        """ Ends the program """
+        return True
+
+
 if __name__ == "__main__":
     PCDHandler(TestBoxPrinter()).cmdloop()
-
 
 # # from PCD.printer import TestBoxPrinter
 # import curses
