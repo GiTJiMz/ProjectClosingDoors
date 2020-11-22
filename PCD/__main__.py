@@ -28,11 +28,11 @@ class PCDHandler(cmd.Cmd):
                 print("Not a valid input")
                 break
 
-    def do_run(self, args):
-        """Run a full test, test of a specific door-function or an action.
+    def do_test(self, args):
+        """Run a full test or a test of a specific door-function.
 
-        pcd> run all - runs all actions
-        pcd> run 1 - runs specific door-function 1
+        pcd> test all - runs a full test (all actions are executed by one)
+        pcd> test 1 - runs a test of door-function 1
         """
         if args == "all":
             for k, v in sorted(Sequence.instances.items()):
@@ -48,9 +48,9 @@ class PCDHandler(cmd.Cmd):
             self._run_sequence(seq)
 
     def do_list(self, args):
-        """ List all sequences """
+        """ Lists all door-functions """
         for id, seq in Sequence.instances.items():
-            print("-", seq)
+            print("-", seq, "\n")
 
     def do_EOF(self, line):
         """ Ends the program """
