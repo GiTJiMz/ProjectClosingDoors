@@ -31,31 +31,27 @@ class Sequence:
 
 # Start position
 
-# @action_decorator
-# def action_start_position(tb):
-#     tb.activate(Input(8))
-#     tb.activate(Input(9))
-#     tb.activate(Input(10))
-#     tb.activate(Input(11))
-#     tb.deactivate_all_other_input()
-#     tb.is_active(Output(1))
-#     tb.is_active(Output(2))
-#     tb.is_active(Output(19))
-#     tb.is_active(Output(20))
-#     tb.everything_else_deactivated()
-#
-#
-# # Power-on test
-#
-#
-# @action_decorator
-# def action_1(tb):
-#     tb.activate(Input(0))  # Input(0) = Input.POWER
-#     tb.is_active(Output(1))
-#     tb.is_active(Output(2))
-#     tb.is_active(Output(19))
-#     tb.is_active(Output(20))
-#     tb.nothing_else_changes()
+def action_start_position(tb):
+    tb.activate(Input(8))
+    tb.activate(Input(9))
+    tb.activate(Input(10))
+    tb.activate(Input(11))
+    #tb.deactivate_all_other_input()
+    tb.is_active(Output(1))
+    tb.is_active(Output(2))
+    tb.is_active(Output(19))
+    tb.is_active(Output(20))
+    #tb.everything_else_deactivated()
+
+# Power-on test
+
+def action_1(tb):
+    tb.activate(Input(0))  # Input(0) = Input.POWER
+    tb.is_active(Output(1))
+    tb.is_active(Output(2))
+    tb.is_active(Output(19))
+    tb.is_active(Output(20))
+    # tb.nothing_else_changes()
 #
 #
 
