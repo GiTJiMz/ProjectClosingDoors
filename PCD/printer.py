@@ -102,45 +102,15 @@ class TestBoxPrinter:
     # get answers from user
 
     def wait_for_input(self):
-        active = [int(x)
-                  for x in
-                  input("List answers for the questions: ").split(",")
-                  ]
-        print(active)
-        return active
+        answer = None
+        while True:
+            if answer is not None:
+                answer = input("Answer the question by typing y or n and hit enter: ").lower()
+            else:
+                answer = input("\nCan you confirm correctness of all of the above questions ? [y/n]: ").lower()
+            if answer in ['y', 'n']:
+                return answer
 
-    def treat_input(self, answer):
-        noquestion, self.questions = self.questions, 0
-        return len(answer) == noquestion and all(answer)
-
-
-# class AdvancedTestBoxPrinter:
-#
-#     def __init__(self):
-#         self.active = []
-#
-#     def is_active(self, output, time=None):
-#         self.active.append(output)
-#
-#     def wait_for_input(self):
-#         for active in self.active:
-#             print(f"Is output {active} active")
-#
-#     def treat_input(self, answer):
-#         pass
-#         # lookup answer in active
-#         # for a in answer:
-#         #     self.active[a.index]
-
-
-if __name__ == "__main__":
-    from PCD import actions
-    tb = TestBoxPrinter()
-    actions.action_1(tb)
-    actions.action_2(tb)
-    actions.action_11(tb)
-    actions.action_5(tb)
-    actions.action_29(tb)
-    actions.action_33(tb)
-
-    # tb.wait_for_input()
+    # def treat_input(self, answer):
+    #     noquestion, self.questions = self.questions, 0
+    #     return len(answer) == noquestion and all(answer)

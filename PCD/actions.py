@@ -24,11 +24,6 @@ class Sequence:
                + f"[{len(self.actions)}]"
 
 
-# def action_decorator(fn):
-#     dict_actions[fn.__name__] = fn
-#     return fn
-
-
 # Start position
 
 def action_start_position(tb):
@@ -36,12 +31,13 @@ def action_start_position(tb):
     tb.activate(Input(9))
     tb.activate(Input(10))
     tb.activate(Input(11))
-    #tb.deactivate_all_other_input()
+    # tb.deactivate_all_other_input()
     tb.is_active(Output(1))
     tb.is_active(Output(2))
     tb.is_active(Output(19))
     tb.is_active(Output(20))
-    #tb.everything_else_deactivated()
+    # tb.everything_else_deactivated()
+
 
 # Power-on test
 
@@ -52,8 +48,7 @@ def action_1(tb):
     tb.is_active(Output(19))
     tb.is_active(Output(20))
     # tb.nothing_else_changes()
-#
-#
+
 
 # Test of right door side
 

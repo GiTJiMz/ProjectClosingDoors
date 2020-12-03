@@ -25,6 +25,7 @@ class State(namedtuple("State", "inputs outputs pulsing")):
         new_pulsing = self.pulsing - {output}
         return self._replace(pulsing=new_pulsing)
 
+
 class StateMachineTextBox:
 
     def __init__(self):
@@ -59,6 +60,7 @@ class StateMachineTextBox:
     def nothing_changes(self):
         pass
 
+
 if __name__ == "__main__":
     import PCD.actions as actions
 
@@ -69,10 +71,12 @@ if __name__ == "__main__":
 
     states = {box.current_state: "init"}
 
+
     def state_name(state):
         if not state in states:
             states[state] = f"s{len(states):02d}"
         return states[state]
+
 
     action = actions.action_2
     print("digraph G {")
@@ -108,5 +112,3 @@ if __name__ == "__main__":
             print("  PULSING:")
         for p in s.pulsing:
             print("   ", p)
-
-
