@@ -2,8 +2,8 @@ class TestBoxPrinter:
 
     def __init__(self):
         self.questions = 0
-        # Indicates wheather activation has occurred
-        self.activation = False
+
+        self.activation = False  # Indicates whether activation has occurred
 
     # ask user to do actions on input
 
@@ -109,7 +109,7 @@ class TestBoxPrinter:
             else:
                 answer = input("\nCan you confirm correctness of all of the above questions ? [y/n]: ").lower()
             if answer in ['y', 'n']:
-                return answer
+                return answer == 'y'
 
     # def treat_input(self, answer):
     #     noquestion, self.questions = self.questions, 0

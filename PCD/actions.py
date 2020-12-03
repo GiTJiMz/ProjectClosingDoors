@@ -11,7 +11,6 @@ class Sequence:
         Sequence.instances[id] = self
 
     def declare_action(self, action):
-        # actions[action.__name__] = action
         self.actions.append(action)
         return action
 
@@ -57,6 +56,9 @@ seq1 = Sequence(1, "Test of local operation of right door")
 
 @seq1.declare_action
 def action_2(tb):
+    """This is an error message
+and it continues on line 4
+and line"""
     tb.activate(Input(2))  # Input(2) = Input.IN_2
     tb.is_active(Output(3))
     tb.is_active(Output(12))
@@ -68,6 +70,7 @@ def action_2(tb):
 
 @seq1.declare_action
 def action_3(tb):
+
     tb.pulse(Input(7))
     tb.is_active(Output(14))
     tb.is_active(Output(16))

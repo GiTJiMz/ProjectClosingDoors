@@ -1,5 +1,6 @@
 import cmd
 
+import PCD.actions as actions
 from PCD.actions import Sequence
 from PCD.printer import TestBoxPrinter
 from PCD.error_messages import error_messages
@@ -19,17 +20,20 @@ class PCDHandler(cmd.Cmd):
         super().__init__()
         self.tb = tb
 
+    def _run_action(self, action, seq):
+        print("\nTesting:", action.__name__)
+        action(self.tb)
+        answer = self.tb.wait_for_input()
+        if not answer:
+            print(f"\nError message for {action.__name__} in door-function {seq.id}:\n"
+                  f"{action.__doc__}")
+        return answer
+
+
     def _run_sequence(self, seq):
         print("\nTesting:", seq)
         for action in seq.actions:
-            print("\nTesting:", action.__name__)
-            action(self.tb)
-            answer = self.tb.wait_for_input()
-            if answer == "n":
-                pass
-
-                print(f"\nError message for {action.__name__} in door-function {seq.id}:\n"
-                      f"{error_messages[action.__name__]}")
+            if not self._run_action(action, seq):
                 break
             # if not self.tb.treat_input(answer):
             #     print("Not a valid input")
@@ -61,6 +65,8 @@ class PCDHandler(cmd.Cmd):
             print(f"Invalid syntax")
         else:
             seq = Sequence.instances[seqid]
+            self._run_action(actions.action_start_position, seq)
+            self._run_action(actions.action_1, seq)
             self._run_sequence(seq)
 
     def do_list(self, args):
