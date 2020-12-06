@@ -3,11 +3,10 @@ import cmd
 import PCD.actions as actions
 from PCD.actions import Sequence
 from PCD.printer import TestBoxPrinter
-from PCD.error_messages import error_messages
+# from PCD.error_messages import error_messages
 
 
 class PCDHandler(cmd.Cmd):
-
     intro = """
  Welcome to Project Closing Doors.
  The purpose of this program is to test
@@ -29,7 +28,6 @@ class PCDHandler(cmd.Cmd):
                   f"{action.__doc__}")
         return answer
 
-
     def _run_sequence(self, seq):
         print("\nTesting:", seq)
         for action in seq.actions:
@@ -49,7 +47,7 @@ class PCDHandler(cmd.Cmd):
 
         So make sure to carry out the above steps before initiating any tests.
 
-        Testing is done writing the
+        Testing is done writing the commands below.
 
         pcd> test all - runs a full test (all door-functions are tested one by one)
         pcd> test 1 - example that runs a test of door-function 1
