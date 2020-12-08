@@ -36,16 +36,24 @@ So I have chosen to make a graph for the test / test box, in order to see if the
 
 - Modules in Package PCD
     - **\_\_main__.py**
-      > **<span style="color: black;">In this module I run my program with an interactive line-oriented command interpreter.\
+      > **In this module I run my program with an interactive line-oriented command interpreter.\
       This is where the repair man gets to choose whether he wants to test a specific door-function\
-      or test all of it.</span>**
+      or test all of it.**
     - **actions.py**
-      > **<span style="color: black;">In this module I have all my actions which is carried out on the testbox.\
-      All the actions are grouped under sequences which represent the different door-functions.</span>**
+      > **In this module I have all my actions which is carried out on the testbox.\
+      All the actions are grouped under sequences which represent the different door-functions.**
     - **domain.py**
-      > **<span style="color: black;">In this module I have all my inputs and outputs.\
-      Input and output are used in the actions, as these consist of input that is affected and output that must be verified.</span>**
+      > **In this module I have all my inputs and outputs.\
+      Input and output are used in the actions, as these consist of input that is affected and output that must be verified.**
     - **printer.py**
+      > **In this module I have all the directions / instructions which is printed / written to the repairman\
+      in every action.**
     - **statemachine.py**
+      > **This module is run separately and writes all the states that the testbox is going through.\
+      Besides of that this module is generating the commands for representing the state machine as a directed graph.\
+      The graph can be visualized via the commands with a graph visualization software like graphviz.\
+      E.g. on this link: http://www.webgraphviz.com/ the digraph commands can be pasted directly in to the field
+      and generate a graph. For my statemachine it looks like this:**
+    
     
 ![Image of Yaktocat](PCD/State_machine.png)
