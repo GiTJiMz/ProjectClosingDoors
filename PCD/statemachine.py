@@ -60,6 +60,9 @@ class StateMachineTextBox:
     def nothing_changes(self):
         pass
 
+    def deactivate_all_other_input(self):
+        pass
+
 
 if __name__ == "__main__":
     import PCD.actions as actions
@@ -77,11 +80,13 @@ if __name__ == "__main__":
             states[state] = f"s{len(states):02d}"
         return states[state]
 
-
-    action = actions.action_2
     print("digraph G {")
 
     for seq in actions.Sequence.instances.values():
+        box = StateMachineTextBox()
+        actions.action_start_position(box)
+        actions.action_1(box)
+
         for action in seq.actions:
             before_s = state_name(box.current_state)
             action(box)
@@ -102,13 +107,13 @@ if __name__ == "__main__":
         print(n, ":")
         if s.inputs:
             print("  INPUTS:")
-        for i in s.inputs:
+        for i in sorted(s.inputs):
             print("   ", i)
         if s.outputs:
             print("  OUTPUTS:")
-        for o in s.outputs:
+        for o in sorted(s.outputs):
             print("   ", o)
         if s.pulsing:
             print("  PULSING:")
-        for p in s.pulsing:
+        for p in sorted(s.pulsing):
             print("   ", p)

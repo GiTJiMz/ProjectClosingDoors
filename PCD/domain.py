@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import IntEnum
 
 
-class Input(Enum):
+class Input(IntEnum):
 
     # Power input
     POWER = 0
@@ -61,7 +61,7 @@ class Input(Enum):
     LOCAL_OPERATION_DOOR_R = IN_12 = 12
 
 
-class Output(Enum):
+class Output(IntEnum):
 
     # General output
 

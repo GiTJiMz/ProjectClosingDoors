@@ -36,9 +36,15 @@ class PCDHandler(cmd.Cmd):
 
     def _run_sequence(self, seq):
         print("\nTesting:", seq)
+        self._run_action(actions.action_power_off)
+        self._run_action(actions.action_start_position)
+        answer = self._run_action(actions.action_1, seq)
+        if not answer:
+            return False
         for action in seq.actions:
             if not self._run_action(action, seq):
-                break
+                return False
+        return True
 
     def do_test(self, args):
         """Run a full test or a test of a specific door-function.
@@ -57,7 +63,8 @@ class PCDHandler(cmd.Cmd):
         """
         if args == "all":
             for k, v in sorted(Sequence.instances.items()):
-                self._run_sequence(v)
+                if not self._run_sequence(v):
+                    return
             return
 
         try:
@@ -66,9 +73,6 @@ class PCDHandler(cmd.Cmd):
             print(f"Invalid syntax")
         else:
             seq = Sequence.instances[seqid]
-            self._run_action(actions.action_power_off)
-            self._run_action(actions.action_start_position)
-            self._run_action(actions.action_1, seq)
             self._run_sequence(seq)
 
     def do_list(self, args):

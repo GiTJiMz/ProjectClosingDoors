@@ -36,12 +36,16 @@ So I have chosen to make a graph for the test / test box, in order to see if the
 
 - Modules in Package PCD
     - \_\_main__.py
-      > In this module I run my program with an interactive line-oriented command interpreter.\
+      > **In this module I run my program with an interactive line-oriented command interpreter.\
       This is where the repair man gets to choose whether he wants to test a specific door-function\
-      or test all of it.
+      or test all of it.**
     - actions.py
-      > In this module I have all my actions which is carried out on the testbox.\
-      All the actions are grouped under sequences which represent the different door-functions.
+      > **In this module I have all my actions which is carried out on the testbox.\
+      All the actions are grouped under sequences which represent the different door-functions.**
     - domain.py
+      > **In this module I have all my inputs and outputs.\
+      Input and output are used in the actions, as these consist of input that is affected and output that must be verified.**
     - printer.py
     - statemachine.py
+    
+![Image of Yaktocat](PCD/State_machine.png)
