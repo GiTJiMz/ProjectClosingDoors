@@ -17,7 +17,7 @@ So the ultimate goal is to get the test automated by executing the test regulati
 
 It brings down the time and eliminates the possibility of errors in performing the test.
 
-## Boundary:
+### Boundary:
 
 The final goal cannot be achieved within the given deadline, so the project is limited to a sub-goal.
 
@@ -31,3 +31,17 @@ and tells if there are errors or not.
 The test / test box is also a state machine that again takes the form of a graph.
 
 So I have chosen to make a graph for the test / test box, in order to see if there are many repetitions and if the test can be performed smarter.
+
+## Organization / structure
+
+- Modules in Package PCD
+    - \_\_main__.py
+      > In this module I run my program with an interactive line-oriented command interpreter.\
+      This is where the repair man gets to choose whether he wants to test a specific door-function\
+      or test all of it.
+    - actions.py
+      > In this module I have all my actions which is carried out on the testbox.\
+      All the actions are grouped under sequences which represent the different door-functions.
+    - domain.py
+    - printer.py
+    - statemachine.py
