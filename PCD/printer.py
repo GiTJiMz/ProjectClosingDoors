@@ -1,8 +1,6 @@
 class TestBoxPrinter:
 
     def __init__(self):
-        self.questions = 0
-
         self.activation = False  # Indicates whether activation has occurred
 
     # ask user to do actions on input
@@ -47,11 +45,9 @@ class TestBoxPrinter:
     # ask user to check on output
 
     def is_active(self, output, time=None):
-        self.questions += 1
         if self.activation is True:
             print("")
             self.activation = False
-
         if time is None:
             print(f"Is OUT {output.value} ({output.name}) active ?")
         else:
@@ -59,7 +55,6 @@ class TestBoxPrinter:
             print(f"active for {time} seconds ?")
 
     def is_inactive(self, output):
-        self.questions += 1
         if self.activation is True:
             print("")
             self.activation = False
@@ -67,7 +62,6 @@ class TestBoxPrinter:
         print(f"Is OUT {output.value} ({output.name}) inactive ?")
 
     def is_pulsing(self, output, frequency):
-        self.questions += 1
         if self.activation is True:
             print("")
             self.activation = False
@@ -76,7 +70,6 @@ class TestBoxPrinter:
         print(f"pulsing with {frequency} Hz ?")
 
     def nothing_changes(self):
-        self.questions += 1
         if self.activation is True:
             print("")
             self.activation = False
@@ -84,7 +77,6 @@ class TestBoxPrinter:
         print(f"Is every output unaltered ?")
 
     def nothing_else_changes(self):
-        self.questions += 1
         if self.activation is True:
             print("")
             self.activation = False
@@ -92,7 +84,6 @@ class TestBoxPrinter:
         print(f"Is every other output unaltered ?")
 
     def everything_else_deactivated(self):
-        self.questions += 1
         if self.activation is True:
             print("")
             self.activation = False
@@ -110,7 +101,3 @@ class TestBoxPrinter:
                 answer = input("\nCan you confirm correctness of all of the above questions ? [y/n]: ").lower()
             if answer in ['y', 'n']:
                 return answer == 'y'
-
-    # def treat_input(self, answer):
-    #     noquestion, self.questions = self.questions, 0
-    #     return len(answer) == noquestion and all(answer)

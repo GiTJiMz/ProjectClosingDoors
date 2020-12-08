@@ -3,7 +3,6 @@ import cmd
 import PCD.actions as actions
 from PCD.actions import Sequence
 from PCD.printer import TestBoxPrinter
-# from PCD.error_messages import error_messages
 
 
 class PCDHandler(cmd.Cmd):
@@ -19,23 +18,27 @@ class PCDHandler(cmd.Cmd):
         super().__init__()
         self.tb = tb
 
-    def _run_action(self, action, seq):
-        print("\nTesting:", action.__name__)
-        action(self.tb)
-        answer = self.tb.wait_for_input()
-        if not answer:
-            print(f"\nError message for {action.__name__} in door-function {seq.id}:\n"
-                  f"{action.__doc__}")
-        return answer
+    def _run_action(self, action, seq=None):
+        if seq is None:
+            if action.__name__ == "action_power_off":
+                action(self.tb)
+            elif action.__name__ == "action_start_position":
+                print(f"\nPut testbox in startposition by executing {action.__name__}:\n")
+                action(self.tb)
+        else:
+            print("\nTesting:", action.__name__)
+            action(self.tb)
+            answer = self.tb.wait_for_input()
+            if not answer:
+                print(f"\nError message for {action.__name__} in door-function {seq.id}:\n"
+                      f"{action.__doc__}")
+            return answer
 
     def _run_sequence(self, seq):
         print("\nTesting:", seq)
         for action in seq.actions:
             if not self._run_action(action, seq):
                 break
-            # if not self.tb.treat_input(answer):
-            #     print("Not a valid input")
-            #     break
 
     def do_test(self, args):
         """Run a full test or a test of a specific door-function.
@@ -63,7 +66,8 @@ class PCDHandler(cmd.Cmd):
             print(f"Invalid syntax")
         else:
             seq = Sequence.instances[seqid]
-            self._run_action(actions.action_start_position, seq)
+            self._run_action(actions.action_power_off)
+            self._run_action(actions.action_start_position)
             self._run_action(actions.action_1, seq)
             self._run_sequence(seq)
 

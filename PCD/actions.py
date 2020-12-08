@@ -23,6 +23,12 @@ class Sequence:
                + f"[{len(self.actions)}]"
 
 
+# Power-off
+
+def action_power_off(tb):
+    tb.deactivate(Input(0))
+
+
 # Start position
 
 def action_start_position(tb):
@@ -30,12 +36,7 @@ def action_start_position(tb):
     tb.activate(Input(9))
     tb.activate(Input(10))
     tb.activate(Input(11))
-    # tb.deactivate_all_other_input()
-    tb.is_active(Output(1))
-    tb.is_active(Output(2))
-    tb.is_active(Output(19))
-    tb.is_active(Output(20))
-    # tb.everything_else_deactivated()
+    tb.deactivate_all_other_input()
 
 
 # Power-on test
@@ -47,7 +48,7 @@ def action_1(tb):
     tb.is_active(Output(2))
     tb.is_active(Output(19))
     tb.is_active(Output(20))
-    # tb.nothing_else_changes()
+    tb.nothing_else_changes()
 
 
 # Test of right door side
@@ -159,8 +160,6 @@ def action_6(tb):
     tb.is_inactive(Output(14))
     tb.is_inactive(Output(16))
     tb.nothing_else_changes()
-    # answer = tb.wait_for_input()
-    # return tb.treat_input(answer)
 
 
 @seq1.declare_action
