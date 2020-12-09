@@ -27,27 +27,31 @@ The 113 actions are grouped into door functions, so that the repairman can in pr
 
 That way, the product ends up being an interactive test where the test box asks the repairman to perform the actions. The intention is to eventually replace the test box printer with the hardware interface that automatically performs the actions
 and tells if there are errors or not.
-
 The test / test box is also a state machine that again takes the form of a graph.
 
 So I have chosen to make a graph for the test / test box, in order to see if there are many repetitions and if the test can be performed smarter.
 
 ## Organization / structure
 
-- Modules in Package PCD
+- Modules in Package PCD<br><br/>
+  
     - **\_\_main__.py**
       > **In this module I run my program with an interactive line-oriented command interpreter.\
       This is where the repair man gets to choose whether he wants to test a specific door-function\
       or test all of it.**
+      
     - **actions.py**
       > **In this module I have all my actions which is carried out on the testbox.\
       All the actions are grouped under sequences which represent the different door-functions.**
+      
     - **domain.py**
       > **In this module I have all my inputs and outputs.\
       Input and output are used in the actions, as these consist of input that is affected and output that must be verified.**
+      
     - **printer.py**
       > **In this module I have all the directions / instructions which is printed / written to the repairman\
       in every action.**
+      
     - **statemachine.py**
       > **This module is run separately and writes all the states that the testbox is going through.\
       Besides of that this module is generating the commands for representing the state machine as a directed graph.\
@@ -56,4 +60,39 @@ So I have chosen to make a graph for the test / test box, in order to see if the
       and generate a graph. For my statemachine it looks like this:**
     
     
-![Image of Yaktocat](PCD/State_machine.png)
+![Image of PCD state machine](PCD/State_machine.png)
+
+## Explanation of code
+
+- ### General
+  
+  - pass
+
+- ### Advanced programming technique vs data structure
+  
+  - Pass
+
+- ### Exciting stuff
+  
+  -  https://github.com/GiTJiMz/ProjectClosingDoors/blob/99ff5f09429f88748d0aca10517bdcb0dce9adb3/PCD/actions.py#L13-L15
+
+- ### Defects and deficiencies
+  
+  - #### Defects
+    
+    When the repairman chooses to run a full test, the actions action_power_off, action_start_position and action_1 are run every time a new door function / sequence starts.<br><br/>
+    The right thing is that the 3 actions only have to run once, and it has to happen just before the first door function is run.<br><br/>
+    Therefore, the text "Testing: Door-function 1: Test of local operation of right door [11]" must also be moved down so that it's above the text
+    "Testing: action_2", if you answer yes and thus confirm the correctness of the questions in action_1.
+    
+  - #### Deficiencies
+
+    1. The repairer must be able to choose how many times a test should be repeated.<br><br/>
+    2. In the vast majority of actions, only one input is stimulated, but there are also some actions where 2 inputs are stimulated.<br><br/>
+    Therefore, after stimulation of each input in the actions, all outputs must be checked so that the error messages can become very specific and thus shorter.<br><br/>
+    As it is currently the repairman who has to stimulate the inputs and answer the questions, it is only more work for the person in question, but in return it helps to pinpoint the error.<br><br/>
+    The idea is that the test box will be replaced, in the future, by a hardware interface that automates the test. So it would facilitate the programming of the hardware interface, later, if it was implemented in the current test box printer.
+
+## Conclusion
+
+  - pass
