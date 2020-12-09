@@ -89,10 +89,28 @@ So I have chosen to make a graph for the test / test box, in order to see if the
 
     1. The repairer must be able to choose how many times a test should be repeated.<br><br/>
     2. In the vast majority of actions, only one input is stimulated, but there are also some actions where 2 inputs are stimulated.<br><br/>
-    Therefore, after stimulation of each input in the actions, all outputs must be checked so that the error messages can become very specific and thus shorter.<br><br/>
-    As it is currently the repairman who has to stimulate the inputs and answer the questions, it is only more work for the person in question, but in return it helps to pinpoint the error.<br><br/>
-    The idea is that the test box will be replaced, in the future, by a hardware interface that automates the test. So it would facilitate the programming of the hardware interface, later, if it was implemented in the current test box printer.
+       Therefore, after stimulation of each input in the actions, all outputs must be checked so that the error messages can become very specific and thus shorter.<br><br/>
+       Currently it's the repairman who has to stimulate the inputs and answer the questions, and therefore it's only more work for the person in question, but in return it helps to pinpoint the error.<br><br/>
+       The idea is that the test box will be replaced, in the future, by a hardware interface that automates the test. So it would facilitate the programming of the hardware interface, later, if it was implemented in the current test box printer.<br><br/>
+    3. In this version of the program, error message is only entered for one action (action_2 in door function 1), so error messages for 112 actions are missing.<br><br/>
+    4. The error messages must be stored permanently in a file where the repairmen can easily enroll new help for other repairmen.
+       From here, the help can be read into the program at startup.<br><br/>
+    5. The code for the state machine has only just been made, and I have generated the image of the graph, but I have not been able to deduce anything from it yet.\
+       So I will definitely move on with this in the future and see if it's possible to run the test in a more efficient way without compromising on quality.
+
 
 ## Conclusion
 
-  - pass
+It has been a steep learning curve, as I have both had to get to know Python at the same time as a lot of new concepts.
+
+It has been a good process with very valuable communication with the teacher and fellow students.
+This has contributed to me modulating my domain in a good way.
+
+There are mistakes that need to be corrected and there is room for improvement, but it's a completely natural part when working with the development of your product.
+
+Going forward, I will put energy into interpreting on the state machine in order to streamline the test as well as
+to figure out how I want to check all outputs after stimulating each input. I think the remaining shortcomings are going to be more affordable to implement.
+
+After this project, I am now left with a product, in the form of a program that we can use at work, as a replacement for the current testing regulation.
+
+I am extremely pleased with the process and the result.
