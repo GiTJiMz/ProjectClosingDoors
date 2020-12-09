@@ -14,10 +14,6 @@ class Sequence:
         self.actions.append(action)
         return action
 
-    def run(self, tb):
-        for action in self.actions:
-            action(tb)
-
     def __str__(self):
         return f"Door-function {self.id}: {self.description} " \
                + f"[{len(self.actions)}]"

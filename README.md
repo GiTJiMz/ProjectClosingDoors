@@ -74,7 +74,61 @@ So I have chosen to make a graph for the test / test box, in order to see if the
 
 - ### Exciting stuff
   
-  -  https://github.com/GiTJiMz/ProjectClosingDoors/blob/99ff5f09429f88748d0aca10517bdcb0dce9adb3/PCD/actions.py#L13-L15
+  - #### Decorator
+    
+    I thought decorators are super exciting, so here I will show how I have used it in my code.<br><br/>
+    I have taken 3 code snippets that illustrate the use of the decorator.<br><br/>
+    In the first code snippet I have the class Sequence and here I want to highlight the method declare_action which works as the decorator.<br><br/>
+    This link highlights the decorator.
+
+    https://github.com/GiTJiMz/ProjectClosingDoors/blob/99ff5f09429f88748d0aca10517bdcb0dce9adb3/PCD/actions.py#L13-L15
+    <br><br/>
+    
+    In the next code snippet, I instantiate an object of class 'Sequence'.<br><br/>
+    
+    In the last piece of code, I use the @ operator to decorate the desired function.<br><br/>
+
+    In my case, I decorate my actions with the method declare_action for the specific instance which is a sequence that in turn represents a door function.<br><br/>
+
+    The line with the code '@ seq3.declare_action' calls the method declare_action on the sequence object 'seq3'
+    with the function 'def action_21 (tb)' as parameter.
+    Here the function is added to the list 'actions' for the sequence object.<br><br/>
+
+    All the actions where I put the code '@ seq3.declare_action' just above the action are grouped under the same sequence / door function (seq3).
+
+```python
+      class Sequence:
+      instances = {}
+
+      def __init__(self, id: int, description="", actions=None):
+          self.id = id
+          self.description = description
+          self.actions = actions or []
+          Sequence.instances[id] = self
+
+      def declare_action(self, action):
+          self.actions.append(action)
+          return action
+
+      def __str__(self):
+          return f"Door-function {self.id}: {self.description} " \
+                 + f"[{len(self.actions)}]"
+```
+
+```python
+      seq3 = Sequence(3, "Test of service-access in left doorside (e.g. to fill up catering)")
+```
+
+```python
+      @seq3.declare_action
+      def action_21(tb):
+          """\nThis is a placeholder text for error message in action_21\n"""
+          tb.activate(Input(2))
+          tb.is_active(Output(3))
+          tb.is_active(Output(12))
+          tb.is_active(Output(4), 4)
+          tb.nothing_else_changes()
+```
 
 - ### Defects and deficiencies
   
