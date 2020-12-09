@@ -70,7 +70,33 @@ So I have chosen to make a graph for the test / test box, in order to see if the
 
 - ### Advanced programming technique vs data structure
   
-  - Pass
+  - General purpose languages (GPL) like Python, C # etc. are often difficult to talk about and evaluate and semantics are often difficult to understand
+    because they are SO general purpose and can do so many things.<br><br/>
+
+    Therefore, you have something called Domain Specific Language (DSL) which means that you build a new programming language
+    which only takes care of things in one's own domain.
+    A DSL then gives, among other things, the advantage that you do not risk being hacked as much, as you have limited the possibilities, in your own language, for e.g. to have methods exploited by hackers to do damage to the system.
+    This also makes it safer and easier to understand due to the limitation.<br><br/>
+    
+    Examples of DSL are SQL, HTML, plantUML and even DOT which is a language used to describe graphs.<br><br/>
+    
+    It is anything but just easier to write both HTML and SQL commands than if you had to use a GPL to program yourself out of it with loops and various programming techniques that you had to type each time.<br><br/>
+    
+    It is quite complicated to make a DSL, as you have to make parsers and syntax highlighter and many other things that should make it easy to use.<br><br/>
+    
+    So instead you can make use of the syntax of a host language to give new semantics, so you just avoid having to build your own syntax tree, parser and syntax highlighter and so on.<br><br/>
+    
+    When you use the host language to give new semantics, you embed the DSL in the host language which in our case is Python.
+    DSLs created in this way are called eDSL (embedded Domain Specific Language).<br><br/>
+    
+    In my project, I have created an eDSL, which is an advanced programming technique, for my domain.<br><br/>
+    
+    The eDSL itself is in fact the description of my actions in the host language (Python).
+    The evaluator is the output or the effect you want in the end and I can interpret the output in 2 different ways, namely my test box printer that makes my system interactive and the state machine that represents all states of the test box.
+    In order to write my actions I have described all inputs and outputs and it is part of the domain specific language (DSL).<br><br/>
+    
+    The state machine is a type of graph with direction that shows how to get from one state to another state.
+    And the graph, which is an advanced data structure, I will have to examine more in the future to see if the test can be optimized.
 
 - ### Exciting stuff
   
