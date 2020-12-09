@@ -26,10 +26,14 @@ class State(namedtuple("State", "inputs outputs pulsing")):
         return self._replace(pulsing=new_pulsing)
 
 
-class StateMachineTextBox:
+    @classmethod
+    def empty(cls):
+        return cls(frozenset(), frozenset(), frozenset())
+
+class StateMachineTestBox:
 
     def __init__(self):
-        self.current_state = State(frozenset(), frozenset(), frozenset())
+        self.current_state = State.empty()
         self.future_actions = []
 
     def activate(self, contact):
@@ -67,7 +71,7 @@ class StateMachineTextBox:
 if __name__ == "__main__":
     import PCD.actions as actions
 
-    box = StateMachineTextBox()
+    box = StateMachineTestBox()
 
     actions.action_start_position(box)
     actions.action_1(box)
@@ -83,7 +87,7 @@ if __name__ == "__main__":
     print("digraph G {")
 
     for seq in actions.Sequence.instances.values():
-        box = StateMachineTextBox()
+        box = StateMachineTestBox()
         actions.action_start_position(box)
         actions.action_1(box)
 
