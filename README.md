@@ -106,25 +106,25 @@ So I have chosen to make a graph for the test / test box, in order to see if the
     If the repairer can not confirm the correctness of the outputs, troubleshooting hints are read out and then
     the program returns to the command prompt.<br><br/>
     
-  -  domain.py
+  - domain.py<br><br/>
     
     Here are all the inputs and outputs that are present on the test box and they are made as an Enum.
-    Each action consists of stimulating the input and checking the output, so that the input and output are used as a parameter in the actions and specifically for the method to be performed on the test box printer, as part of the action.
+    Each action consists of stimulating the input and checking the output, so that the input and output are used as a parameter in the actions and specifically for the method to be performed on the test box printer, as part of the action.<br><br/>
     
-  -  actions.py
+  - actions.py<br><br/>
     
     Here, each action is made as functions.
     In \_\_main\_\_.py, actions.py is imported and thus run, thereby creating 10 instances of the sequence class which represent each of the 10 door functions / sequences that the repairman can test.
     The 10 instances are entered in 'instances' which is a dictionary with 'id' as key.
-    Under the heading 'Exciting stuff' I have explained how the different actions are added to the list 'actions' under the respective door functions / sequences, using decorator.
+    Under the heading 'Exciting stuff' I have explained how the different actions are added to the list 'actions' under the respective door functions / sequences, using decorator.<br><br/>
     
-  -  printer.py
+  - printer.py<br><br/>
     
     When the actions are run on the test box, each action consists of some things that the repairman must do to perform
     the actions. The individual things to do are methods on the test box printer and these methods are listed in this module
-    and instructs the repairer in what to do to perform the actions.
+    and instructs the repairer in what to do to perform the actions.<br><br/>
     
-  -  statemachine.py
+  - statemachine.py<br><br/>
     
     This module runs independently and makes the state machine for the test box.
     The code prints state mode as well as the code for the DOT language that graphviz can use to draw the graph for the state machine.
