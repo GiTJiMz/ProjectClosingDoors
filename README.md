@@ -66,7 +66,68 @@ So I have chosen to make a graph for the test / test box, in order to see if the
 
 - ### General
   
-  - pass
+  - \_\_main\_\_.py<br><br/>
+    
+    Since this is an interactive test, I want to give the repairman an opportunity to navigate and select
+    whether a full test should be run or whether a particular test should be performed.<br><br/>
+
+    Therefore, I have chosen to use Cmd which is a framework for writing line oriented command interpreter.<br><br/>
+    
+    According to the documentation for Cmd, one should inherit from it to an interpreter class.<br><br/>
+    
+    My interpreter class is called PCDHandler and when the program starts, PCDHandler is instantiated with
+    my test box printer in the constructor so it can be used in PCDHandler.<br><br/>
+    
+    The cmdloop () method keeps repeating a prompt all the time.<br><br/>
+    
+    You can type help and get the documented commands listed and you can get help for a command by typing
+    help 'command name'.<br><br/>
+    
+    The commands are made by creating methods that must be prefixed with do_ and the help is written as docstring.<br><br/>
+    
+    I have made 3 commands:
+    
+    'list' is a method that can be used to list all the door functions / sequences that the repairman can test.<br><br/>
+    
+    'test' is a method used to perform tests and here the repairman can choose whether to run a full test or just run a single test.<br><br/>
+    
+    'EOF' is a method used to exit the command prompt and exit the program.<br><br/>
+    
+    If the repairer e.g. choose to write test 1, door function 1 will be tested. It is checked whether 1 is an integer and the sequence object with id 1,
+    corresponding to door function 1, is transferred to the private method called '_run_sequence' as a parameter.<br><br/>
+    
+    The actions action_power_off, action_start_position and action_1 are performed first, in each door function, no matter what.
+    Then each action in the door function / sequence is transferred, as a parameter, to the method '_run_action' which runs
+    each action on the test box printer.<br><br/>
+    
+    The test box printer writes to the repairman what to do to perform the operation.
+    Finally, the repairer answers whether the correctness of the outputs can be confirmed.
+    If so, the program proceeds and runs the next action in the door function / sequence.
+    If the repairer can not confirm the correctness of the outputs, troubleshooting hints are read out and then
+    the program returns to the command prompt.<br><br/>
+    
+  -  domain.py
+    
+    Here are all the inputs and outputs that are present on the test box and they are made as an Enum.
+    Each action consists of stimulating the input and checking the output, so that the input and output are used as a parameter in the actions and specifically for the method to be performed on the test box printer, as part of the action.
+    
+  -  actions.py
+    
+    Here, each action is made as functions.
+    In \_\_main\_\_.py, actions.py is imported and thus run, thereby creating 10 instances of the sequence class which represent each of the 10 door functions / sequences that the repairman can test.
+    The 10 instances are entered in 'instances' which is a dictionary with 'id' as key.
+    Under the heading 'Exciting stuff' I have explained how the different actions are added to the list 'actions' under the respective door functions / sequences, using decorator.
+    
+  -  printer.py
+    
+    When the actions are run on the test box, each action consists of some things that the repairman must do to perform
+    the actions. The individual things to do are methods on the test box printer and these methods are listed in this module
+    and instructs the repairer in what to do to perform the actions.
+    
+  -  statemachine.py
+    
+    This module runs independently and makes the state machine for the test box.
+    The code prints state mode as well as the code for the DOT language that graphviz can use to draw the graph for the state machine.
 
 - ### Advanced programming technique vs data structure
   
